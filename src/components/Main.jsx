@@ -1,5 +1,25 @@
 import { useReducer, useState } from "react";
 import { questions } from "./../questions.json";
+const initialState = {
+  number: 0,
+  showAnswer: false,
+  points: 0,
+};
+function reducer(state, action) {
+  const { number, points } = state;
+  const { type, payload } = action;
+  switch (type) {
+    case "setShowAnswer":
+      return { ...state, showAnswer: true };
+    case "incPoints":
+      return { ...state, showAnswer: true, points: points + payload };
+    case "inc":
+      return { ...state, showAnswer: false, number: number + 1 };
+    default:
+      throw new Error("unknown action");
+  }
+}
+
 export default function Main() {
   const [{ number, showAnswer, points }, dispatch] = useReducer(
     reducer,
