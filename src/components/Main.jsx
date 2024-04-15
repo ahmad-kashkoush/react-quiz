@@ -8,6 +8,18 @@ export default function Main() {
   //   const [number, setNumber] = useState(0);
   //   const [showAnswer, setShowAnswer] = useState(false);
   //   const [points, setPoints] = useState(0);
+  const totalPoints = questions
+    .map((q) => q.points)
+    .reduce((prev, cnt) => cnt + prev);
+  function handleOptionClick(e) {
+    dispatch({ type: "setShowAnswer" });
+    if (questions[number - 1].correctOption === +e.target.value)
+      dispatch({ type: "incPoints", payload: questions[number - 1].points });
+  }
+  function handleNumberChange(e) {
+    // setNumber((i) => i + 1);
+    dispatch({ type: "inc" });
+  }
   if (number === 0)
     return (
       <main className="main start">
