@@ -1,10 +1,17 @@
-import { useState } from "react";
-import DateCounter from "./components/DateCounter";
+// components
 import Header from "./components/Header";
 import Main from "./components/Main";
-import "./index.css";
-import { useEffect } from "react";
+import Loader from "./components/Loader";
+import Error from "./components/Error";
+import StartScreen from "./StartScreen";
+import QuestionScreen from "./QuestionScreen";
+import FinishScreen from "./FinishScreen";
+// hooks
 import { useReducer } from "react";
+import { useTicker } from "./useTicker";
+import { useQuestions } from "./useQuestions";
+//
+import "./index.css";
 const sec_per_question = 10;
 const initialState = {
   questions: [],
@@ -67,18 +74,48 @@ function reducer(state, action) {
   }
 }
 function App() {
-  const [state, dispatch] = useReducer(reducer2, []);
-  useEffect(function () {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "setQuestions", payload: data }));
-  }, []);
+  const [
+    { status, questions, index, points, answer, maxScore, timer },
+    dispatch,
+  ] = useReducer(reducer, initialState);
+  const numOfQuestions = questions.length;
+  const totalPoints = questions
+    .map((q) => q.points)
+    .reduce((prev, cnt) => cnt + prev, 0);
+  useTicker(timer, status, dispatch);
+  useQuestions(dispatch);
+
   return (
     <div className="app">
       <Header />
-      <Main />
+      <Main>
+        {status === "loading" && <Loader />}
+        {status === "error" && <Error />}
+        {status === "ready" && (
+          <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} />
+        )}
+        {status === "active" && (
+          <QuestionScreen
+            numOfQuestions={numOfQuestions}
+            dispatch={dispatch}
+            questions={questions}
+            index={index}
+            points={points}
+            totalPoints={totalPoints}
+            answer={answer}
+            timer={timer}
+          />
+        )}
+        {status === "finished" && (
+          <FinishScreen
+            totalPoints={totalPoints}
+            points={points}
+            maxScore={maxScore}
+            dispatch={dispatch}
+          />
+        )}
+      </Main>
     </div>
   );
 }
-
 export default App;
