@@ -3,13 +3,13 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Loader from "./components/Loader";
 import Error from "./components/Error";
-import StartScreen from "./StartScreen";
-import QuestionScreen from "./QuestionScreen";
-import FinishScreen from "./FinishScreen";
+import StartScreen from "./components/start screen/StartScreen";
+import QuestionScreen from "./components/Question screen/QuestionScreen";
+import FinishScreen from "./components/FinishScreen";
 // hooks
 import { useReducer } from "react";
-import { useTicker } from "./useTicker";
-import { useQuestions } from "./useQuestions";
+import { useTicker } from "./components/timer/useTicker";
+import { useQuestions } from "./components/Question screen/useQuestions";
 //
 import "./index.css";
 const sec_per_question = 10;

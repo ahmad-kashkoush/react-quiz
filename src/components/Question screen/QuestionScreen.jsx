@@ -1,4 +1,4 @@
-import  CountDownTimer  from "./CountDownTimer";
+import  CountDownTimer  from "../timer/CountDownTimer";
 import  Option  from "./Option";
 import  Progress from "./Progress";
 

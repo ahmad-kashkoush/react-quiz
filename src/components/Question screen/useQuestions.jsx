@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { myQuestions } from "./questions.json";
+import { myQuestions } from "../../questions.json";
 
 export function useQuestions(dispatch) {
   useEffect(
