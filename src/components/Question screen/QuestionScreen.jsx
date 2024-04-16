@@ -1,6 +1,6 @@
-import  CountDownTimer  from "../timer/CountDownTimer";
-import  Option  from "./Option";
-import  Progress from "./Progress";
+import CountDownTimer from "../timer/CountDownTimer";
+import Option from "./Option";
+import Progress from "./Progress";
 
 export default function QuestionScreen({
   index,
@@ -31,21 +31,17 @@ export default function QuestionScreen({
 
       <h3>{questions[index].question}</h3>
       <div className="options">
-        {questions[index].options.map((op, i) => {
-          return (
-            <>
-              <Option
-                key={op}
-                answer={answer}
-                isCorrect={i === questions[index].correctOption}
-                onOptionClick={handleOptionClick}
-              >
-                {" "}
-                {op}
-              </Option>
-            </>
-          );
-        })}
+        {questions[index].options.map((op, i) => (
+          <Option
+            key={op}
+            answer={answer}
+            isCorrect={i === questions[index].correctOption}
+            onOptionClick={handleOptionClick}
+          >
+            {" "}
+            {op}
+          </Option>
+        ))}
       </div>
       {answer !== null && (
         <>
