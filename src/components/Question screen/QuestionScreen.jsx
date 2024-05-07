@@ -1,43 +1,23 @@
+import { useQu } from "../QuestionsContext";
 import CountDownTimer from "../timer/CountDownTimer";
 import Option from "./Option";
 import Progress from "./Progress";
 
-export default function QuestionScreen({
-  index,
-  points,
-  totalPoints,
-  numOfQuestions,
-  dispatch,
-  questions,
-  answer,
-  timer,
-}) {
-  function handleOptionClick(e) {
-    dispatch({ type: "inc", payload: +e.target.value });
-  }
+export default function QuestionScreen() {
+  const { index, questions, answer, clickNext } = useQu();
+
   function handleNumberChange(e) {
-    // setNumber((i) => i + 1);
-    dispatch({ type: "next" });
+    clickNext();
   }
 
   return (
     <>
-      <Progress
-        index={index}
-        numOfQuestions={numOfQuestions}
-        points={points}
-        totalPoints={totalPoints}
-      />
+      <Progress />
 
       <h3>{questions[index].question}</h3>
       <div className="options">
         {questions[index].options.map((op, i) => (
-          <Option
-            key={op}
-            answer={answer}
-            isCorrect={i === questions[index].correctOption}
-            onOptionClick={handleOptionClick}
-          >
+          <Option key={op} isCorrect={i === questions[index].correctOption}>
             {" "}
             {op}
           </Option>
@@ -48,7 +28,7 @@ export default function QuestionScreen({
           <button className="btn btn-ui" onClick={handleNumberChange}>
             next
           </button>
-          <CountDownTimer timer={timer} />
+          <CountDownTimer />
         </>
       )}
     </>

@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import  "./index.css";
+import "./index.css";
+import { QuestionsProvider } from "./components/QuestionsContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <QuestionsProvider>
+      <App />
+    </QuestionsProvider>
   </React.StrictMode>
 );

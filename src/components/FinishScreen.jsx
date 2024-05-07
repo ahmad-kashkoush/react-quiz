@@ -1,5 +1,7 @@
+import { useQu } from "./QuestionsContext";
 
-export default function FinishScreen({ points, totalPoints, maxScore, dispatch }) {
+export default function FinishScreen() {
+const { points, totalPoints, maxScore, restartQuiz}=useQu();
   const percent = Math.ceil((points / totalPoints) * 100);
   return (
     <>
@@ -10,7 +12,7 @@ export default function FinishScreen({ points, totalPoints, maxScore, dispatch }
       <p className="highscore">your highest score is:{maxScore}</p>
       <button
         className="btn btn-ui"
-        onClick={() => dispatch({ type: "restart" })}
+        onClick={restartQuiz}
       >
         Restart the Quiz
       </button>

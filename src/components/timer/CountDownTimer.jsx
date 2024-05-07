@@ -1,4 +1,7 @@
-export default function CountDownTimer({ timer }) {
+import { useQu } from "../QuestionsContext";
+
+export default function CountDownTimer() {
+  const { timer } = useQu();
   const min = Math.floor(timer / 60);
   const sec = Math.floor(timer % 60);
   return (

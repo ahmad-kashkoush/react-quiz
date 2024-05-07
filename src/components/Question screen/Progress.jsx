@@ -1,9 +1,7 @@
-export default function Progress({
-  index,
-  numOfQuestions,
-  points,
-  totalPoints,
-}) {
+import { useQu } from "../QuestionsContext";
+
+export default function Progress() {
+  const { index, numOfQuestions, points, totalPoints } = useQu();
   return (
     <div className="progress">
       <progress value={index + 1} min="0" max={numOfQuestions}></progress>
