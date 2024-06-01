@@ -7,7 +7,11 @@ This is a simple React quiz application. It uses a JSON file to store questions 
 
 ## Demo
 
-![Video](public/demo-video.mp4)
+
+https://github.com/ahmad-kashkoush/react-quiz/assets/89735230/bbcbfe12-7239-4439-b68a-4e0d9a70a02d
+
+
+
 
 
 
